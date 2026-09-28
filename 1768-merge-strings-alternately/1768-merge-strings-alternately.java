@@ -1,15 +1,18 @@
 class Solution {
-    public String mergeAlternately(String word1, String word2) {
-        String merged = new String();
-        while(word1.length() > 0 && word2.length() > 0){
-            merged = merged + word1.charAt(0);
-            merged = merged + word2.charAt(0);
-            word1 = word1.substring(1);
-            word2 = word2.substring(1);
-        }
-        if(word1.length() > word2.length()) merged = merged + word1;
-        else merged = merged + word2;
+    public String mergeAlternately(String word1s, String word2s) {
+        StringBuilder merged = new StringBuilder();
+        StringBuilder word1 = new StringBuilder(word1s);
+        StringBuilder word2 = new StringBuilder(word2s);
 
-        return merged;
+        while(word1.length() > 0 && word2.length() > 0){
+            merged.append(word1.charAt(0));
+            merged.append(word2.charAt(0));
+            word1.deleteCharAt(0);
+            word2.deleteCharAt(0);
+        }
+        if(word1.length() > word2.length()) merged.append(word1);
+        else merged.append(word2);
+
+        return merged.toString();
     }
 }
